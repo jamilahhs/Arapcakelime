@@ -1,0 +1,462 @@
+
+/Users/jamilaalizada/Arapcakelime/src/app/(auth)/login/page.tsx
+  48:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/jamilaalizada/Arapcakelime/src/app/(auth)/register/page.tsx
+  47:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/assignments/page.tsx
+  48:5  error  Error: Cannot access variable before it is declared
+
+`fetchDashboard` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/assignments/page.tsx:48:5
+  46 |
+  47 |   useEffect(() => {
+> 48 |     fetchDashboard();
+     |     ^^^^^^^^^^^^^^ `fetchDashboard` accessed before it is declared
+  49 |   }, []);
+  50 |
+  51 |   const fetchDashboard = async () => {
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/assignments/page.tsx:51:3
+   49 |   }, []);
+   50 |
+>  51 |   const fetchDashboard = async () => {
+      |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  52 |     try {
+      | ^^^^^^^^^
+>  53 |       setLoading(true);
+      …
+      | ^^^^^^^^^
+> 108 |     }
+      | ^^^^^^^^^
+> 109 |   };
+      | ^^^^^ `fetchDashboard` is declared here
+  110 |
+  111 |   const handleJoinClass = async (e: React.FormEvent) => {
+  112 |     e.preventDefault();  react-hooks/immutability
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/notes/page.tsx
+  23:5  error  Error: Cannot access variable before it is declared
+
+`fetchNotes` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/notes/page.tsx:23:5
+  21 |
+  22 |   useEffect(() => {
+> 23 |     fetchNotes();
+     |     ^^^^^^^^^^ `fetchNotes` accessed before it is declared
+  24 |   }, []);
+  25 |
+  26 |   const fetchNotes = async () => {
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/notes/page.tsx:26:3
+  24 |   }, []);
+  25 |
+> 26 |   const fetchNotes = async () => {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 27 |     try {
+     | ^^^^^^^^^
+> 28 |       setLoading(true);
+     …
+     | ^^^^^^^^^
+> 44 |     }
+     | ^^^^^^^^^
+> 45 |   };
+     | ^^^^^ `fetchNotes` is declared here
+  46 |
+  47 |   const handleSave = async () => {
+  48 |     if (!title.trim() || !content.trim()) return;  react-hooks/immutability
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/overview/page.tsx
+  21:18  warning  'setStreak' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/quizzes/page.tsx
+  53:5   error    Error: Cannot access variable before it is declared
+
+`fetchQuizzesAndResults` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/quizzes/page.tsx:53:5
+  51 |
+  52 |   useEffect(() => {
+> 53 |     fetchQuizzesAndResults();
+     |     ^^^^^^^^^^^^^^^^^^^^^^ `fetchQuizzesAndResults` accessed before it is declared
+  54 |   }, []);
+  55 |
+  56 |   // Timer effect
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/quizzes/page.tsx:70:3
+   68 |   }, [quizRunning, timeLeft]);
+   69 |
+>  70 |   const fetchQuizzesAndResults = async () => {
+      |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  71 |     try {
+      | ^^^^^^^^^
+>  72 |       setLoading(true);
+      …
+      | ^^^^^^^^^
+> 111 |     }
+      | ^^^^^^^^^
+> 112 |   };
+      | ^^^^^ `fetchQuizzesAndResults` is declared here
+  113 |
+  114 |   const handleStartQuiz = async (quiz: Quiz) => {
+  115 |     try {                                                                                                                                                                          react-hooks/immutability
+  58:16  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
+  65:7   error    Error: Cannot access variable before it is declared
+
+`handleSubmitQuiz` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/quizzes/page.tsx:65:7
+  63 |     } else if (quizRunning && timeLeft === 0) {
+  64 |       // Auto-submit when time runs out
+> 65 |       handleSubmitQuiz();
+     |       ^^^^^^^^^^^^^^^^ `handleSubmitQuiz` accessed before it is declared
+  66 |     }
+  67 |     return () => clearInterval(timer);
+  68 |   }, [quizRunning, timeLeft]);
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/quizzes/page.tsx:150:3
+  148 |   };
+  149 |
+> 150 |   const handleSubmitQuiz = async () => {
+      |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 151 |     if (!activeQuiz) return;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 152 |     try {
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 185 |     }
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 186 |   };
+      | ^^^^^ `handleSubmitQuiz` is declared here
+  187 |
+  188 |   const formatTimer = (seconds: number) => {
+  189 |     const m = Math.floor(seconds / 60).toString().padStart(2, "0");  react-hooks/immutability
+  68:6   warning  React Hook useEffect has a missing dependency: 'handleSubmitQuiz'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  react-hooks/exhaustive-deps
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/study-hub/page.tsx
+  21:10  warning  'loading' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  34:54  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+  41:5   error    Error: Cannot access variable before it is declared
+
+`fetchVocab` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/study-hub/page.tsx:41:5
+  39 |
+  40 |   useEffect(() => {
+> 41 |     fetchVocab();
+     |     ^^^^^^^^^^ `fetchVocab` accessed before it is declared
+  42 |   }, []);
+  43 |
+  44 |   // Pomodoro Interval Timer
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/study-hub/page.tsx:67:3
+  65 |   }, [pomodoroActive, pomodoroTime, isBreak]);
+  66 |
+> 67 |   const fetchVocab = async () => {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 68 |     try {
+     | ^^^^^^^^^
+> 69 |       setLoading(true);
+     …
+     | ^^^^^^^^^
+> 92 |     }
+     | ^^^^^^^^^
+> 93 |   };
+     | ^^^^^ `fetchVocab` is declared here
+  94 |
+  95 |   const handleAddWord = async (e: React.FormEvent) => {
+  96 |     e.preventDefault();                                                                                                                                                                                                         react-hooks/immutability
+  46:19  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+  55:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/jamilaalizada/Arapcakelime/src/app/student/study-hub/page.tsx:55:9
+  53 |       if (!isBreak) {
+  54 |         alert("Harika! Çalışma seansı bitti. Şimdi 5 dakikalık bir mola zamanı.");
+> 55 |         setIsBreak(true);
+     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  56 |         setPomodoroTime(5 * 60);
+  57 |       } else {
+  58 |         alert("Mola bitti! Yeni bir çalışma seansına başlayabilirsiniz.");  react-hooks/set-state-in-effect
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/assignments/page.tsx
+   57:5   error  Error: Cannot access variable before it is declared
+
+`fetchClassesAndAssignments` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/assignments/page.tsx:57:5
+  55 |
+  56 |   useEffect(() => {
+> 57 |     fetchClassesAndAssignments();
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ `fetchClassesAndAssignments` accessed before it is declared
+  58 |   }, []);
+  59 |
+  60 |   const fetchClassesAndAssignments = async () => {
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/assignments/page.tsx:60:3
+  58 |   }, []);
+  59 |
+> 60 |   const fetchClassesAndAssignments = async () => {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 61 |     try {
+     | ^^^^^^^^^
+> 62 |       setLoading(true);
+     …
+     | ^^^^^^^^^
+> 94 |     }
+     | ^^^^^^^^^
+> 95 |   };
+     | ^^^^^ `fetchClassesAndAssignments` is declared here
+  96 |
+  97 |   const handleCreateAssignment = async (e: React.FormEvent) => {
+  98 |     e.preventDefault();  react-hooks/immutability
+  130:30  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-explicit-any
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/classes/page.tsx
+  34:5   error  Error: Cannot access variable before it is declared
+
+`fetchClasses` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/classes/page.tsx:34:5
+  32 |
+  33 |   useEffect(() => {
+> 34 |     fetchClasses();
+     |     ^^^^^^^^^^^^ `fetchClasses` accessed before it is declared
+  35 |   }, []);
+  36 |
+  37 |   useEffect(() => {
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/classes/page.tsx:45:3
+  43 |   }, [selectedClassId]);
+  44 |
+> 45 |   const fetchClasses = async () => {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 46 |     try {
+     | ^^^^^^^^^
+> 47 |       setLoading(true);
+     …
+     | ^^^^^^^^^
+> 66 |     }
+     | ^^^^^^^^^
+> 67 |   };
+     | ^^^^^ `fetchClasses` is declared here
+  68 |
+  69 |   const fetchClassMembers = async (classId: string) => {
+  70 |     try {                                                                                                                                react-hooks/immutability
+  39:7   error  Error: Cannot access variable before it is declared
+
+`fetchClassMembers` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/classes/page.tsx:39:7
+  37 |   useEffect(() => {
+  38 |     if (selectedClassId) {
+> 39 |       fetchClassMembers(selectedClassId);
+     |       ^^^^^^^^^^^^^^^^^ `fetchClassMembers` accessed before it is declared
+  40 |     } else {
+  41 |       setMembers([]);
+  42 |     }
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/classes/page.tsx:69:3
+  67 |   };
+  68 |
+> 69 |   const fetchClassMembers = async (classId: string) => {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 70 |     try {
+     | ^^^^^^^^^
+> 71 |       setMembersLoading(true);
+     …
+     | ^^^^^^^^^
+> 83 |     }
+     | ^^^^^^^^^
+> 84 |   };
+     | ^^^^^ `fetchClassMembers` is declared here
+  85 |
+  86 |   const handleCreateClass = async (e: React.FormEvent) => {
+  87 |     e.preventDefault();  react-hooks/immutability
+  41:7   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/classes/page.tsx:41:7
+  39 |       fetchClassMembers(selectedClassId);
+  40 |     } else {
+> 41 |       setMembers([]);
+     |       ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  42 |     }
+  43 |   }, [selectedClassId]);
+  44 |                                             react-hooks/set-state-in-effect
+  78:27  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-explicit-any
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/quiz-builder/page.tsx
+  51:5  error  Error: Cannot access variable before it is declared
+
+`fetchInitialData` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/quiz-builder/page.tsx:51:5
+  49 |
+  50 |   useEffect(() => {
+> 51 |     fetchInitialData();
+     |     ^^^^^^^^^^^^^^^^ `fetchInitialData` accessed before it is declared
+  52 |   }, []);
+  53 |
+  54 |   useEffect(() => {
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/quiz-builder/page.tsx:62:3
+  60 |   }, [selectedQuizId]);
+  61 |
+> 62 |   const fetchInitialData = async () => {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 63 |     try {
+     | ^^^^^^^^^
+> 64 |       setLoading(true);
+     …
+     | ^^^^^^^^^
+> 95 |     }
+     | ^^^^^^^^^
+> 96 |   };
+     | ^^^^^ `fetchInitialData` is declared here
+  97 |
+  98 |   const fetchQuestions = async (quizId: string) => {
+  99 |     try {                                                                                           react-hooks/immutability
+  56:7  error  Error: Cannot access variable before it is declared
+
+`fetchQuestions` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/quiz-builder/page.tsx:56:7
+  54 |   useEffect(() => {
+  55 |     if (selectedQuizId) {
+> 56 |       fetchQuestions(selectedQuizId);
+     |       ^^^^^^^^^^^^^^ `fetchQuestions` accessed before it is declared
+  57 |     } else {
+  58 |       setQuestions([]);
+  59 |     }
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/quiz-builder/page.tsx:98:3
+   96 |   };
+   97 |
+>  98 |   const fetchQuestions = async (quizId: string) => {
+      |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  99 |     try {
+      | ^^^^^^^^^
+> 100 |       setQLoading(true);
+      …
+      | ^^^^^^^^^
+> 112 |     }
+      | ^^^^^^^^^
+> 113 |   };
+      | ^^^^^ `fetchQuestions` is declared here
+  114 |
+  115 |   const handleCreateQuiz = async (e: React.FormEvent) => {
+  116 |     e.preventDefault();  react-hooks/immutability
+  58:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/quiz-builder/page.tsx:58:7
+  56 |       fetchQuestions(selectedQuizId);
+  57 |     } else {
+> 58 |       setQuestions([]);
+     |       ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  59 |     }
+  60 |   }, [selectedQuizId]);
+  61 |                                     react-hooks/set-state-in-effect
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/students/page.tsx
+   27:5   error  Error: Cannot access variable before it is declared
+
+`fetchClasses` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/students/page.tsx:27:5
+  25 |
+  26 |   useEffect(() => {
+> 27 |     fetchClasses();
+     |     ^^^^^^^^^^^^ `fetchClasses` accessed before it is declared
+  28 |   }, []);
+  29 |
+  30 |   useEffect(() => {
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/students/page.tsx:38:3
+  36 |   }, [selectedClassId]);
+  37 |
+> 38 |   const fetchClasses = async () => {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 39 |     try {
+     | ^^^^^^^^^
+> 40 |       setLoading(true);
+     …
+     | ^^^^^^^^^
+> 58 |     }
+     | ^^^^^^^^^
+> 59 |   };
+     | ^^^^^ `fetchClasses` is declared here
+  60 |
+  61 |   const fetchStudentStats = async (classId: string) => {
+  62 |     try {                                                                                                          react-hooks/immutability
+   32:7   error  Error: Cannot access variable before it is declared
+
+`fetchStudentStats` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/students/page.tsx:32:7
+  30 |   useEffect(() => {
+  31 |     if (selectedClassId) {
+> 32 |       fetchStudentStats(selectedClassId);
+     |       ^^^^^^^^^^^^^^^^^ `fetchStudentStats` accessed before it is declared
+  33 |     } else {
+  34 |       setStudentStats([]);
+  35 |     }
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/students/page.tsx:61:3
+   59 |   };
+   60 |
+>  61 |   const fetchStudentStats = async (classId: string) => {
+      |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  62 |     try {
+      | ^^^^^^^^^
+>  63 |       setStatsLoading(true);
+      …
+      | ^^^^^^^^^
+> 124 |     }
+      | ^^^^^^^^^
+> 125 |   };
+      | ^^^^^ `fetchStudentStats` is declared here
+  126 |
+  127 |   return (
+  128 |     <div className="space-y-8">  react-hooks/immutability
+   34:7   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/jamilaalizada/Arapcakelime/src/app/teacher/students/page.tsx:34:7
+  32 |       fetchStudentStats(selectedClassId);
+  33 |     } else {
+> 34 |       setStudentStats([]);
+     |       ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  35 |     }
+  36 |   }, [selectedClassId]);
+  37 |              react-hooks/set-state-in-effect
+   73:48  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  100:13  error  'totalQuizzes' is never reassigned. Use 'const' instead                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             prefer-const
+
+✖ 28 problems (25 errors, 3 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+
