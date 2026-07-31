@@ -243,6 +243,24 @@ const mockSupabase = {
         setItems(list);
         return { data: Array.isArray(obj) ? added : added[0], error: null };
       },
+      upsert: async (obj: any) => {
+        const list = getItems();
+        const newItems = Array.isArray(obj) ? obj : [obj];
+        newItems.forEach((item: any) => {
+          const idx = list.findIndex((x: any) => x.id === item.id);
+          if (idx !== -1) {
+            list[idx] = { ...list[idx], ...item };
+          } else {
+            list.push({
+              id: item.id || "mock-id-" + Math.random().toString(36).substr(2, 9),
+              created_at: new Date().toISOString(),
+              ...item,
+            });
+          }
+        });
+        setItems(list);
+        return { data: obj, error: null };
+      },
       update: async (obj: any) => {
         const list = getItems();
         items.forEach((item: any) => {
