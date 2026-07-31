@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { supabase } from "@/lib/supabase";
 
 interface ClassObj {
@@ -24,48 +24,48 @@ const PREMADE_PACKS = [
     id: "pack_colors",
     name: "Renkler (الألوان)",
     words: [
-      { arabic_word: "أَحْمَر", turkish_meaning: "Kırmızı", root_word: "حmer", example_sentence: "الْوَرْدَةُ حَمْرَاءُ جَمِيلَةٌ." },
-      { arabic_word: "أَزْرَق", turkish_meaning: "Mavi", root_word: "zrq", example_sentence: "السَّمَاءُ زَرْقَاءُ صَافِيَةٌ الْيَوْمَ." },
-      { arabic_word: "أَخْضَر", turkish_meaning: "Yeşil", root_word: "xdr", example_sentence: "الْعُشْبُ فِي الْحَدِيقَةِ أَخْضَرُ رَطْبٌ." },
-      { arabic_word: "أَصْفَر", turkish_meaning: "Sarı", root_word: "sfr", example_sentence: "اللَّiمُونُ أَصْفَرُ وَحَامِضٌ." },
-      { arabic_word: "أَبْيَض", turkish_meaning: "Beyaz", root_word: "byd", example_sentence: "الثَّلْجُ أَبْيَضُ نَاصِعٌ فِي الشِّtاءِ." },
-      { arabic_word: "أَسْوَد", turkish_meaning: "Siyah", root_word: "swd", example_sentence: "الْقِطُّ الأَسْوَدُ يَنَامُ عَلَى الْكُرْسِيِّ." },
+      { arabic_word: "أَحْمَر", turkish_meaning: "Kırmızı", root_word: "حمر", example_sentence: "الْوَرْدَةُ حَمْرَاءُ جَمِيلَةٌ." },
+      { arabic_word: "أَزْرَق", turkish_meaning: "Mavi", root_word: "زرق", example_sentence: "السَّمَاءُ زَرْقَاءُ صَافِيَةٌ الْيَوْمَ." },
+      { arabic_word: "أَخْضَر", turkish_meaning: "Yeşil", root_word: "خضر", example_sentence: "الْعُشْبُ فِي الْحَدِيقَةِ أَخْضَرُ رَطْبٌ." },
+      { arabic_word: "أَصْفَر", turkish_meaning: "Sarı", root_word: "صفر", example_sentence: "اللَّيْمُونُ أَصْفَرُ وَحَامِضٌ." },
+      { arabic_word: "أَبْيَض", turkish_meaning: "Beyaz", root_word: "بيض", example_sentence: "الثَّلْجُ أَبْيَضُ نَاصِعٌ فِي الشِّتَاءِ." },
+      { arabic_word: "أَسْوَد", turkish_meaning: "Siyah", root_word: "سود", example_sentence: "الْقِطُّ الأَسْوَدُ يَنَامُ عَلَى الْكُرْسِيِّ." },
     ],
   },
   {
     id: "pack_verbs",
     name: "Temel Fiiller (الأفعال)",
     words: [
-      { arabic_word: "ذَهَبَ", turkish_meaning: "Gitti", root_word: "zhb", example_sentence: "ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَةِ صَبَاحًا." },
-      { arabic_word: "كَتَبَ", turkish_meaning: "Yazdı", root_word: "ktb", example_sentence: "كَتَبَ الْوَلَدُ الرِّسَالَةَ بِالْقَلَمِ." },
-      { arabic_word: "قَرَأَ", turkish_meaning: "Okudu", root_word: "qr'", example_sentence: "قَرَأَتْ أُمِّي كِtَابًا جَمِيلًا." },
-      { arabic_word: "شَرِبَ", turkish_meaning: "İçti", root_word: "shrb", example_sentence: "شَرِبَ الطِّفْلُ الْحَلِيبَ الدَّافِئَ." },
-      { arabic_word: "أَكَلَ", turkish_meaning: "Yedi", root_word: "akl", example_sentence: "أَكَلَ الرَّجُلُ التُّفَّاحَةَ اللَّذِيذَةَ." },
-      { arabic_word: "جَلَسَ", turkish_meaning: "Oturdu", root_word: "jls", example_sentence: "جَلَسَ الْمُعَلِّمُ عَلَى الْكُرْسِيِّ الْخَشَبِيِّ." },
+      { arabic_word: "ذَهَبَ", turkish_meaning: "Gitti", root_word: "ذهب", example_sentence: "ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَةِ صَبَاحًا." },
+      { arabic_word: "كَتَبَ", turkish_meaning: "Yazdı", root_word: "كتب", example_sentence: "كَتَبَ الْوَلَدُ الرِّسَالَةَ بِالْقَلَمِ." },
+      { arabic_word: "قَرَأَ", turkish_meaning: "Okudu", root_word: "قرأ", example_sentence: "قَرَأَتْ أُمِّي كِتَابًا جَمِيلًا." },
+      { arabic_word: "شَرِبَ", turkish_meaning: "İçti", root_word: "شرب", example_sentence: "شَرِبَ الطِّفْلُ الْحَلِيبَ الدَّافِئَ." },
+      { arabic_word: "أَكَلَ", turkish_meaning: "Yedi", root_word: "أكل", example_sentence: "أَكَلَ الرَّجُلُ التُّفَّاحَةَ اللَّذِيذَةَ." },
+      { arabic_word: "جَلَسَ", turkish_meaning: "Oturdu", root_word: "جلس", example_sentence: "جَلَسَ الْمُعَلِّمُ عَلَى الْكُرْسِيِّ الْخَشَبِيِّ." },
     ],
   },
   {
     id: "pack_daily",
     name: "Günlük İletişim (الحوار)",
     words: [
-      { arabic_word: "مَرْحَبًا", turkish_meaning: "Merhaba", root_word: "rhb", example_sentence: "مَرْحَبًا بِكَ يَا صَدِيقِي الْعَZِيزُ." },
-      { arabic_word: "شُكْرًا", turkish_meaning: "Teşekkürler", root_word: "shkr", example_sentence: "شُكْرًا جَزِيلًا عَلَى هَدِيَّتِكَ الرَّائِعَةِ." },
-      { arabic_word: "مِنْ فَضْلِكَ", turkish_meaning: "Lütfen", root_word: "fdl", example_sentence: "أَعْطِنِي الْقَلَمَ مِنْ فَضْلِكَ." },
-      { arabic_word: "آسِف", turkish_meaning: "Üzgünüm / Özür dilerim", root_word: "asf", example_sentence: "أَنَا آسِفٌ لِأَنِّي تَأَخَّرْتُ عَنِ الدَّرْسِ." },
-      { arabic_word: "كَيْفَ حَالُكَ؟", turkish_meaning: "Nasılsın?", root_word: "hwl", example_sentence: "كَيْفَ حَالُكَ يَا أَخِي الْغَالِي؟" },
-      { arabic_word: "بِخَيْر", turkish_meaning: "İyiyim", root_word: "xhr", example_sentence: "أَنَا بِخَيْرٍ وَالْحَمْدُ للهِ كَثِيرًا." },
+      { arabic_word: "مَرْحَبًا", turkish_meaning: "Merhaba", root_word: "رحيب", example_sentence: "مَرْحَبًا بِكَ يَا صَدِيقِي الْعَزِيزُ." },
+      { arabic_word: "شُكْرًا", turkish_meaning: "Teşekkürler", root_word: "شكر", example_sentence: "شُكْرًا جَZِيلًا عَلَى هَدِيَّتِكَ الرَّائِعَةِ." },
+      { arabic_word: "مِنْ فَضْلِكَ", turkish_meaning: "Lütfen", root_word: "فضل", example_sentence: "أَعْطِنِي الْقَلَمَ مِنْ فَضْلِكَ." },
+      { arabic_word: "آسِف", turkish_meaning: "Üzgünüm / Özür dilerim", root_word: "أسف", example_sentence: "أَنَا آسِفٌ لِأَنِّي تَأَخَّرْتُ عَنِ الدَّرْسِ." },
+      { arabic_word: "كَيْفَ حَالُكَ؟", turkish_meaning: "Nasılsın?", root_word: "حول", example_sentence: "كَيْفَ حَالُكَ يَا أَخِي الْغَالِي؟" },
+      { arabic_word: "بِخَيْر", turkish_meaning: "İyiyim", root_word: "خير", example_sentence: "أَنَا بِخَيْرٍ وَالْحَمْدُ للهِ كَثِيرًا." },
     ],
   },
   {
     id: "pack_house",
     name: "Ev Eşyaları (البيت)",
     words: [
-      { arabic_word: "بَيْت", turkish_meaning: "Ev", root_word: "byt", example_sentence: "هَذَا بَيْتُنَا الْكَبِيرُ وَالْجَمِيلُ." },
-      { arabic_word: "غُرْفَة", turkish_meaning: "Oda", root_word: "grf", example_sentence: "أَنَامُ فِي غُرْفَةِ النَّوْمِ الْهَادِئَةِ." },
-      { arabic_word: "بَاب", turkish_meaning: "Kapı", root_word: "bwb", example_sentence: "افْتَحِ الْبَابَ لِيَدْخُلَ الضَّيْفُ." },
-      { arabic_word: "نَافِذَة", turkish_meaning: "Pencere", root_word: "nfd", example_sentence: "انْظُرْ مِنَ النَّافِذَةِ إِلَى الْحَدِيقَةِ." },
-      { arabic_word: "طَاوِلَة", turkish_meaning: "Masa", root_word: "twl", example_sentence: "الْكِtَابُ مَوْضُوعٌ عَلَى الطَّاوِلَةِ." },
-      { arabic_word: "كُرْسِيّ", turkish_meaning: "Sandalye", root_word: "krs", example_sentence: "اجْلِسْ عَلَى الْكُرْسِيِّ الْمُرِيحِ." },
+      { arabic_word: "بَيْت", turkish_meaning: "Ev", root_word: "بيت", example_sentence: "هَذَا بَيْتُنَا الْكَبِيرُ وَالْجَمِيلُ." },
+      { arabic_word: "غُرْفَة", turkish_meaning: "Oda", root_word: "غرف", example_sentence: "أَنَامُ فِي غُرْفَةِ النَّوْمِ الْهَادِئَةِ." },
+      { arabic_word: "بَاب", turkish_meaning: "Kapı", root_word: "بوب", example_sentence: "افْتَحِ الْبَابَ لِيَدْخُلَ الضَّيْفُ." },
+      { arabic_word: "نَافِذَة", turkish_meaning: "Pencere", root_word: "نفذ", example_sentence: "انْظُرْ مِنَ النَّافِذَةِ إِلَى الْحَدِيقَةِ." },
+      { arabic_word: "طَاوِلَة", turkish_meaning: "Masa", root_word: "طول", example_sentence: "الْكِتَابُ مَوْضُوعٌ عَلَى الطَّاوِلَةِ." },
+      { arabic_word: "كُرْسِيّ", turkish_meaning: "Sandalye", root_word: "كرس", example_sentence: "اجْلِسْ عَلَى الْكُرْسِيِّ الْمُرِيحِ." },
     ],
   },
 ];
@@ -80,18 +80,30 @@ export default function TeacherClasses() {
   // Stats Counters
   const [totalClassesCount, setTotalClassesCount] = useState(0);
   const [totalStudentsCount, setTotalStudentsCount] = useState(0);
+  const [totalNotesCount, setTotalNotesCount] = useState(0);
 
   // New Class Form State
   const [className, setClassName] = useState("");
 
-  // Assign Vocabulary state
+  // Tabs for resource distribution
+  const [activeResourceTab, setActiveResourceTab] = useState<"premade" | "custom" | "note">("premade");
+
+  // Assign Premade Vocabulary state
   const [selectedPackId, setSelectedPackId] = useState("pack_colors");
   const [assigningVocab, setAssigningVocab] = useState(false);
 
+  // Assign Custom Vocabulary state
+  const [customArabic, setCustomArabic] = useState("");
+  const [customTurkish, setCustomTurkish] = useState("");
+  const [customRoot, setCustomRoot] = useState("");
+  const [customExample, setCustomExample] = useState("");
+  const [assigningCustom, setAssigningCustom] = useState(false);
+
   // Publish Note form state
   const [noteTitle, setNoteTitle] = useState("");
-  const [noteContent, setNoteContent] = useState("");
   const [publishingNote, setPublishingNote] = useState(false);
+
+  const teacherEditorRef = useRef<HTMLDivElement>(null);
 
   const fetchClasses = async () => {
     try {
@@ -126,6 +138,13 @@ export default function TeacherClasses() {
           const uniqueStudents = new Set(allMembers.map((m) => m.student_id));
           setTotalStudentsCount(uniqueStudents.size);
         }
+
+        // Fetch published notes count
+        const { data: allNotes } = await supabase
+          .from("notes")
+          .select("id")
+          .in("class_id", classIds);
+        setTotalNotesCount(allNotes?.length || 0);
       }
     } catch (err) {
       console.error("Sınıflar çekilirken hata:", err);
@@ -276,10 +295,52 @@ export default function TeacherClasses() {
     }
   };
 
+  // Push Custom Word to all students in the selected class
+  const handleAssignCustomVocab = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedClassId || !customArabic.trim() || !customTurkish.trim()) return;
+
+    try {
+      setAssigningCustom(true);
+      const studentIds = members.map((m) => m.profiles.id);
+
+      if (studentIds.length === 0) {
+        alert("Bu sınıfta henüz hiç öğrenci yok. Kelime atanamadı!");
+        return;
+      }
+
+      const insertRows = studentIds.map((sId) => ({
+        user_id: sId,
+        arabic_word: customArabic.trim(),
+        turkish_meaning: customTurkish.trim(),
+        root_word: customRoot.trim() || null,
+        example_sentence: customExample.trim() || null,
+        box_level: 1,
+      }));
+
+      const { error } = await supabase.from("vocabulary").insert(insertRows);
+      if (error) throw error;
+
+      alert(`"${customArabic}" kelimesi sınıftaki ${studentIds.length} öğrenciye başarıyla atandı!`);
+      setCustomArabic("");
+      setCustomTurkish("");
+      setCustomRoot("");
+      setCustomExample("");
+    } catch (err) {
+      console.error("Özel kelime atama hatası:", err);
+    } finally {
+      setAssigningCustom(false);
+    }
+  };
+
   // Publish Shared Lesson Note to Class
   const handlePublishNote = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedClassId || !noteTitle.trim() || !noteContent.trim()) return;
+    const htmlContent = teacherEditorRef.current?.innerHTML || "";
+    if (!selectedClassId || !noteTitle.trim() || !htmlContent.trim()) {
+      alert("Lütfen başlık ve içerik alanlarını doldurun.");
+      return;
+    }
 
     try {
       setPublishingNote(true);
@@ -291,7 +352,7 @@ export default function TeacherClasses() {
       const { error } = await supabase.from("notes").insert({
         user_id: user.id,
         title: noteTitle.trim(),
-        content: noteContent.trim(),
+        content: htmlContent,
         class_id: selectedClassId,
       });
 
@@ -299,12 +360,19 @@ export default function TeacherClasses() {
 
       alert("Ders notu sınıfa başarıyla yayınlandı!");
       setNoteTitle("");
-      setNoteContent("");
+      if (teacherEditorRef.current) teacherEditorRef.current.innerHTML = "";
+      await fetchClasses();
     } catch (err) {
       console.error("Ders notu yayınlama hatası:", err);
     } finally {
       setPublishingNote(false);
     }
+  };
+
+  // Rich Text Editor Commands
+  const formatTeacherText = (command: string, value: string = "") => {
+    document.execCommand(command, false, value);
+    teacherEditorRef.current?.focus();
   };
 
   return (
@@ -346,6 +414,20 @@ export default function TeacherClasses() {
           </div>
           <div className="h-12 w-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl font-bold">
             👥
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
+          <div>
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">
+              Yayınlanan Ders Notları
+            </span>
+            <span className="text-3xl font-extrabold text-slate-950 mt-2 block">
+              {totalNotesCount}
+            </span>
+          </div>
+          <div className="h-12 w-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl font-bold">
+            📝
           </div>
         </div>
       </div>
@@ -439,15 +521,15 @@ export default function TeacherClasses() {
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* 1. Class Students Card */}
-                <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-6 h-fit">
+                <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-6 h-fit md:col-span-1">
                   <div>
                     <h3 className="text-base font-bold text-slate-950">
                       Sınıftaki Öğrenciler ({members.length})
                     </h3>
                     <p className="text-[10px] text-slate-400 mt-0.5">
-                      Kodu kullanarak sınıfa kayıt olan öğrenciler.
+                      Kayıt olan öğrenciler.
                     </p>
                   </div>
 
@@ -459,10 +541,7 @@ export default function TeacherClasses() {
                     <div className="text-center py-12 border border-dashed border-slate-200 rounded-2xl space-y-2">
                       <span className="text-2xl block">👥</span>
                       <p className="text-slate-400 text-xs font-semibold">
-                        Henüz kayıtlı öğrenci yok.
-                      </p>
-                      <p className="text-[10px] text-slate-450 max-w-[180px] mx-auto leading-relaxed">
-                        Sınıf kodunu öğrencilerinizle paylaşın.
+                        Kayıtlı öğrenci yok.
                       </p>
                     </div>
                   ) : (
@@ -480,9 +559,6 @@ export default function TeacherClasses() {
                               {member.profiles.full_name}
                             </span>
                           </div>
-                          <span className="text-[9px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded uppercase">
-                            Kayıtlı
-                          </span>
                         </div>
                       ))}
                     </div>
@@ -490,73 +566,241 @@ export default function TeacherClasses() {
                 </div>
 
                 {/* 2. Vocabulary & Notes Distribution Panel */}
-                <div className="space-y-6">
-                  {/* Vocab push */}
-                  <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-4">
-                    <div>
-                      <h3 className="text-base font-bold text-slate-950">
-                        Sınıfa Kelime Ata
-                      </h3>
-                      <p className="text-[10px] text-slate-400 mt-0.5">
-                        Seçilen kelime paketini sınıftaki tüm öğrencilerin dağarcığına ekleyin.
-                      </p>
-                    </div>
-
-                    <div className="space-y-3">
-                      <select
-                        value={selectedPackId}
-                        onChange={(e) => setSelectedPackId(e.target.value)}
-                        className="block w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-slate-950 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 text-xs"
-                      >
-                        {PREMADE_PACKS.map((pack) => (
-                          <option key={pack.id} value={pack.id}>
-                            {pack.name} ({pack.words.length} Kelime)
-                          </option>
-                        ))}
-                      </select>
-
-                      <button
-                        type="button"
-                        disabled={assigningVocab || members.length === 0}
-                        onClick={handleAssignVocab}
-                        className="w-full py-2.5 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-bold text-xs disabled:opacity-50 transition-all cursor-pointer shadow shadow-teal-900/10"
-                      >
-                        {assigningVocab ? "Atanıyor..." : "Kelimeleri Sınıfa Gönder 🚀"}
-                      </button>
-                    </div>
+                <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm md:col-span-2 space-y-4">
+                  {/* Swappable Resource Tabs */}
+                  <div className="flex bg-slate-50 p-1 rounded-xl border border-slate-100">
+                    <button
+                      type="button"
+                      onClick={() => setActiveResourceTab("premade")}
+                      className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                        activeResourceTab === "premade"
+                          ? "bg-teal-600 text-white shadow-sm"
+                          : "text-slate-500 hover:text-slate-700"
+                      }`}
+                    >
+                      Hazır Kelimeler
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setActiveResourceTab("custom")}
+                      className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                        activeResourceTab === "custom"
+                          ? "bg-teal-600 text-white shadow-sm"
+                          : "text-slate-500 hover:text-slate-700"
+                      }`}
+                    >
+                      Özel Kelime
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setActiveResourceTab("note")}
+                      className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                        activeResourceTab === "note"
+                          ? "bg-teal-600 text-white shadow-sm"
+                          : "text-slate-500 hover:text-slate-700"
+                      }`}
+                    >
+                      Ders Notu Paylaş 📝
+                    </button>
                   </div>
 
-                  {/* Shared Note publish */}
-                  <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-4">
-                    <div>
-                      <h3 className="text-base font-bold text-slate-950">
-                        Sınıfta Ders Notu Yayınla
-                      </h3>
-                      <p className="text-[10px] text-slate-400 mt-0.5">
-                        Tüm sınıfın görebileceği ortak ders notu yayınlayın.
-                      </p>
-                    </div>
+                  {/* TAB 1: PREMADE WORD ASSIGNMENT */}
+                  {activeResourceTab === "premade" && (
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="text-sm font-bold text-slate-900">Hazır Paket Ata</h4>
+                        <p className="text-[10px] text-slate-400 mt-0.5">
+                          Kelime paketindeki tüm kelimeleri sınıftaki öğrencilere atayın.
+                        </p>
+                      </div>
 
+                      <div className="space-y-3">
+                        <select
+                          value={selectedPackId}
+                          onChange={(e) => setSelectedPackId(e.target.value)}
+                          className="block w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-slate-950 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 text-xs"
+                        >
+                          {PREMADE_PACKS.map((pack) => (
+                            <option key={pack.id} value={pack.id}>
+                              {pack.name} ({pack.words.length} Kelime)
+                            </option>
+                          ))}
+                        </select>
+
+                        <button
+                          type="button"
+                          disabled={assigningVocab || members.length === 0}
+                          onClick={handleAssignVocab}
+                          className="w-full py-2.5 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-bold text-xs disabled:opacity-50 transition-all cursor-pointer"
+                        >
+                          {assigningVocab ? "Atanıyor..." : "Kelimeleri Sınıfa Gönder 🚀"}
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* TAB 2: CUSTOM WORD ASSIGNMENT */}
+                  {activeResourceTab === "custom" && (
+                    <form onSubmit={handleAssignCustomVocab} className="space-y-3">
+                      <div>
+                        <h4 className="text-sm font-bold text-slate-900">Özel Kelime Ata</h4>
+                        <p className="text-[10px] text-slate-400 mt-0.5">
+                          Bugün işlediğiniz ders kelimelerini sınıftaki öğrencilere ödev olarak atayın.
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                            Arapça Kelime
+                          </label>
+                          <input
+                            type="text"
+                            required
+                            value={customArabic}
+                            onChange={(e) => setCustomArabic(e.target.value)}
+                            placeholder="Örn: بَحْث"
+                            dir="rtl"
+                            className="block w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-slate-950 focus:border-teal-500 focus:outline-none text-xs font-sans text-right"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                            Türkçe Karşılığı
+                          </label>
+                          <input
+                            type="text"
+                            required
+                            value={customTurkish}
+                            onChange={(e) => setCustomTurkish(e.target.value)}
+                            placeholder="Örn: Araştırma"
+                            className="block w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-slate-950 focus:border-teal-500 focus:outline-none text-xs"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                            Kök Kelime (İsteğe bağlı)
+                          </label>
+                          <input
+                            type="text"
+                            value={customRoot}
+                            onChange={(e) => setCustomRoot(e.target.value)}
+                            placeholder="Örn: بحث"
+                            dir="rtl"
+                            className="block w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-slate-950 focus:border-teal-500 focus:outline-none text-xs font-sans text-right"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                            Örnek Cümle (İsteğe bağlı)
+                          </label>
+                          <input
+                            type="text"
+                            value={customExample}
+                            onChange={(e) => setCustomExample(e.target.value)}
+                            placeholder="Örn: هَذَا بَحْثٌ جَمِيلٌ."
+                            dir="rtl"
+                            className="block w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-slate-950 focus:border-teal-500 focus:outline-none text-xs font-sans text-right"
+                          />
+                        </div>
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={assigningCustom || members.length === 0}
+                        className="w-full py-2.5 bg-teal-655 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-bold text-xs disabled:opacity-50 transition-all cursor-pointer mt-2"
+                      >
+                        {assigningCustom ? "Ekleniyor..." : "Özel Kelimeyi Sınıfa Gönder 🚀"}
+                      </button>
+                    </form>
+                  )}
+
+                  {/* TAB 3: FORMATTED LESSON NOTE PUBLISHING */}
+                  {activeResourceTab === "note" && (
                     <form onSubmit={handlePublishNote} className="space-y-3">
+                      <div>
+                        <h4 className="text-sm font-bold text-slate-900">Ders Notu Yayınla</h4>
+                        <p className="text-[10px] text-slate-400 mt-0.5">
+                          Öğrencileriniz için zengin metin araçlarıyla biçimlendirilmiş ders notları yayınlayın.
+                        </p>
+                      </div>
+
                       <div>
                         <input
                           type="text"
                           required
                           value={noteTitle}
                           onChange={(e) => setNoteTitle(e.target.value)}
-                          placeholder="Ders Notu Başlığı"
-                          className="block w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-slate-950 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 text-xs"
+                          placeholder="Ders Notu Başlığı (Örn: Ders 3: Muttasıl Zamirler)"
+                          className="block w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-slate-950 focus:border-teal-500 focus:outline-none text-xs font-bold"
                         />
                       </div>
+
+                      {/* HTML Editor Toolbar */}
+                      <div className="flex flex-wrap items-center gap-1 bg-slate-50 p-1.5 rounded-lg border border-slate-100">
+                        <button
+                          type="button"
+                          onClick={() => formatTeacherText("bold")}
+                          className="px-2 py-0.5 text-[10px] bg-white border rounded hover:bg-slate-100 font-bold"
+                        >
+                          B
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => formatTeacherText("italic")}
+                          className="px-2 py-0.5 text-[10px] bg-white border rounded hover:bg-slate-100 italic"
+                        >
+                          I
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => formatTeacherText("underline")}
+                          className="px-2 py-0.5 text-[10px] bg-white border rounded hover:bg-slate-100 underline"
+                        >
+                          U
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => formatTeacherText("formatBlock", "H3")}
+                          className="px-2 py-0.5 text-[10px] bg-white border rounded hover:bg-slate-100 font-black"
+                        >
+                          H3
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => formatTeacherText("insertUnorderedList")}
+                          className="px-2 py-0.5 text-[10px] bg-white border rounded hover:bg-slate-100"
+                        >
+                          • Liste
+                        </button>
+                        <div className="h-4 w-px bg-slate-200 mx-1"></div>
+                        <button
+                          type="button"
+                          className="px-2 py-0.5 text-[9px] bg-slate-900 text-teal-400 font-mono font-bold rounded hover:bg-slate-950 cursor-pointer"
+                          onClickCapture={() => {
+                            if (teacherEditorRef.current) {
+                              teacherEditorRef.current.style.direction =
+                                teacherEditorRef.current.style.direction === "rtl" ? "ltr" : "rtl";
+                              teacherEditorRef.current.style.textAlign =
+                                teacherEditorRef.current.style.direction === "rtl" ? "right" : "left";
+                            }
+                          }}
+                        >
+                          Yönü Değiştir (RTL) 🔄
+                        </button>
+                      </div>
+
                       <div>
-                        <textarea
-                          required
-                          rows={3}
-                          value={noteContent}
-                          onChange={(e) => setNoteContent(e.target.value)}
-                          placeholder="Ders notu içeriği, gramer kuralları veya açıklamalar..."
-                          className="block w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2 text-slate-950 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 text-xs"
-                        ></textarea>
+                        <div
+                          ref={teacherEditorRef}
+                          contentEditable
+                          suppressContentEditableWarning
+                          className="min-h-[140px] max-h-[220px] overflow-y-auto rounded-xl border border-slate-200 bg-white p-3 focus:border-teal-500 focus:outline-none sm:text-xs font-sans leading-relaxed text-slate-900"
+                          style={{ direction: "rtl", textAlign: "right" }}
+                        />
                       </div>
 
                       <button
@@ -567,7 +811,7 @@ export default function TeacherClasses() {
                         {publishingNote ? "Yayınlanıyor..." : "Ders Notunu Yayınla 📝"}
                       </button>
                     </form>
-                  </div>
+                  )}
                 </div>
               </div>
             )}
