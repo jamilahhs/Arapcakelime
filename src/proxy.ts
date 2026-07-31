@@ -2,14 +2,73 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function proxy(request: NextRequest) {
+  const url = request.nextUrl.clone();
+  const isProtectedPath =
+    url.pathname.startsWith("/student") || url.pathname.startsWith("/teacher");
+
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+
+  const isMockMode =
+    !supabaseUrl ||
+    supabaseUrl.includes("your-project") ||
+    supabaseUrl.includes("placeholder");
+
+  // ----------------------------------------------------
+  // OFFLINE MOCK MODE ROUTING
+  // ----------------------------------------------------
+  if (isMockMode) {
+    const mockRole = request.cookies.get("mock_role")?.value;
+    const mockUserId = request.cookies.get("mock_user_id")?.value;
+
+    const hasSession = !!mockUserId;
+
+    // Redirect to login if not authenticated and trying to access protected paths
+    if (isProtectedPath && !hasSession) {
+      url.pathname = "/login";
+      return NextResponse.redirect(url);
+    }
+
+    if (hasSession) {
+      const isAuthPath =
+        url.pathname === "/login" ||
+        url.pathname === "/register" ||
+        url.pathname === "/";
+
+      // Redirect signed-in users from auth pages to their dashboards
+      if (isAuthPath) {
+        if (mockRole === "teacher") {
+          url.pathname = "/teacher/classes";
+        } else {
+          url.pathname = "/student/overview";
+        }
+        return NextResponse.redirect(url);
+      }
+
+      // Protect teacher paths from student role
+      if (url.pathname.startsWith("/teacher") && mockRole !== "teacher") {
+        url.pathname = "/student/overview";
+        return NextResponse.redirect(url);
+      }
+
+      // Protect student paths from teacher role
+      if (url.pathname.startsWith("/student") && mockRole !== "student") {
+        url.pathname = "/teacher/classes";
+        return NextResponse.redirect(url);
+      }
+    }
+
+    return NextResponse.next();
+  }
+
+  // ----------------------------------------------------
+  // ONLINE SUPABASE ROUTING
+  // ----------------------------------------------------
   let response = NextResponse.next({
     request: {
       headers: request.headers,
     },
   });
-
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 
   const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
     cookies: {
@@ -30,14 +89,9 @@ export async function proxy(request: NextRequest) {
     },
   });
 
-  // Get current user session securely
   const {
     data: { user },
   } = await supabase.auth.getUser();
-
-  const url = request.nextUrl.clone();
-  const isProtectedPath =
-    url.pathname.startsWith("/student") || url.pathname.startsWith("/teacher");
 
   // Redirect to login if user is not authenticated and trying to access protected paths
   if (isProtectedPath && !user) {
