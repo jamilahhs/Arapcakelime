@@ -99,10 +99,25 @@ const mockSupabase = {
 
       // Seed initial dummy data to avoid blank pages in Mock Mode
       if (list.length === 0) {
-        if (table === "classes") {
+        if (table === "profiles") {
           list = [
-            { id: "c1", name: "Gramatik Arapça - A1", code: "ARP-101", teacher_id: "mock-teacher" },
-            { id: "c2", name: "İleri Seviye Belagat", code: "ARP-9821", teacher_id: "mock-teacher" },
+            { id: "mock-student-id", full_name: "Yusuf Demir", role: "student", streak_count: 5, last_active_date: new Date().toISOString().split("T")[0] }
+          ];
+          localStorage.setItem("mock_db_profiles", JSON.stringify(list));
+        }
+        if (table === "class_members") {
+          list = [
+            { id: "cm1", class_id: "c1", student_id: "mock-student-id" },
+            { id: "cm2", class_id: "c2", student_id: "mock-student-id" }
+          ];
+          localStorage.setItem("mock_db_class_members", JSON.stringify(list));
+        }
+        if (table === "classes") {
+          const session = typeof window !== "undefined" ? localStorage.getItem("mock_session") : null;
+          const uId = session ? JSON.parse(session).id : "mock-teacher";
+          list = [
+            { id: "c1", name: "Gramatik Arapça - A1", code: "ARP-101", teacher_id: uId },
+            { id: "c2", name: "İleri Seviye Belagat", code: "ARP-9821", teacher_id: uId },
           ];
           localStorage.setItem("mock_db_classes", JSON.stringify(list));
         }
@@ -206,9 +221,7 @@ const mockSupabase = {
         return builder;
       },
       eq: (field: string, val: any) => {
-        if (field === "id" || field === "user_id" || field === "student_id" || field === "teacher_id" || field === "class_id" || field === "quiz_id" || field === "assignment_id") {
-          items = items.filter((x: any) => x[field] === val);
-        }
+        items = items.filter((x: any) => x[field] === val);
         return builder;
       },
       neq: (field: string, val: any) => {

@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS public.notes (
     user_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE NOT NULL,
     title TEXT NOT NULL,
     content TEXT NOT NULL,
+    class_id UUID REFERENCES public.classes(id) ON DELETE CASCADE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
