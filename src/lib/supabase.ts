@@ -232,6 +232,10 @@ const mockSupabase = {
         items = items.filter((x: any) => vals.includes(x[field]));
         return builder;
       },
+      is: (field: string, val: any) => {
+        items = items.filter((x: any) => x[field] === val);
+        return builder;
+      },
       order: (field: string, options?: any) => {
         items.sort((a: any, b: any) => {
           if (options?.ascending) {
