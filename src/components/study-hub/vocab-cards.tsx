@@ -8,6 +8,7 @@ interface VocabWord {
   arabic_word: string;
   turkish_meaning: string;
   root_word: string | null;
+  example_sentence: string | null;
   box_level: number;
   next_review_date: string;
 }
@@ -17,6 +18,7 @@ interface BulkItem {
   arabic_word: string;
   turkish_meaning: string;
   root_word: string | null;
+  example_sentence: string | null;
 }
 
 const PREMADE_PACKS = [
@@ -24,17 +26,17 @@ const PREMADE_PACKS = [
     id: "pack_colors",
     name: "Renkler",
     arabic_name: "الألوان",
-    desc: "Arapça temel renk isimleri ve telaffuzları.",
+    desc: "Arapça temel renk isimleri ve cümle içinde kullanımları.",
     icon: "🎨",
     float_class: "float-slow",
     gradient_class: "from-rose-500/90 to-amber-500/90 shadow-rose-500/20",
     words: [
-      { arabic_word: "أَحْمَر", turkish_meaning: "Kırmızı", root_word: "حmer" },
-      { arabic_word: "أَزْرَق", turkish_meaning: "Mavi", root_word: "zrq" },
-      { arabic_word: "أَخْضَر", turkish_meaning: "Yeşil", root_word: "xdr" },
-      { arabic_word: "أَصْفَر", turkish_meaning: "Sarı", root_word: "sfr" },
-      { arabic_word: "أَبْيَض", turkish_meaning: "Beyaz", root_word: "byd" },
-      { arabic_word: "أَسْوَد", turkish_meaning: "Siyah", root_word: "swd" },
+      { arabic_word: "أَحْمَر", turkish_meaning: "Kırmızı", root_word: "حمر", example_sentence: "الْوَرْدَةُ حَمْرَاءُ جَمِيلَةٌ." },
+      { arabic_word: "أَزْرَق", turkish_meaning: "Mavi", root_word: "زرق", example_sentence: "السَّمَاءُ زَرْقَاءُ صَافِيَةٌ الْيَوْمَ." },
+      { arabic_word: "أَخْضَر", turkish_meaning: "Yeşil", root_word: "خضر", example_sentence: "الْعُشْبُ فِي الْحَدِيقَةِ أَخْضَرُ رَطْبٌ." },
+      { arabic_word: "أَصْفَر", turkish_meaning: "Sarı", root_word: "صفر", example_sentence: "اللَّيْمُونُ أَصْفَرُ وَحَامِضٌ." },
+      { arabic_word: "أَبْيَض", turkish_meaning: "Beyaz", root_word: "بيض", example_sentence: "الثَّلْجُ أَبْيَضُ نَاصِعٌ فِي الشِّتَاءِ." },
+      { arabic_word: "أَسْوَد", turkish_meaning: "Siyah", root_word: "سود", example_sentence: "الْقِطُّ الأَسْوَدُ يَنَامُ عَلَى الْكُرْسِيِّ." },
     ],
   },
   {
@@ -46,12 +48,12 @@ const PREMADE_PACKS = [
     float_class: "float-medium",
     gradient_class: "from-purple-600/90 to-indigo-600/90 shadow-purple-600/20",
     words: [
-      { arabic_word: "ذَهَبَ", turkish_meaning: "Gitti", root_word: "zhb" },
-      { arabic_word: "كَتَبَ", turkish_meaning: "Yazdı", root_word: "ktb" },
-      { arabic_word: "قَرَأَ", turkish_meaning: "Okudu", root_word: "qr'" },
-      { arabic_word: "شَرِبَ", turkish_meaning: "İçti", root_word: "shrb" },
-      { arabic_word: "أَكَلَ", turkish_meaning: "Yedi", root_word: "akl" },
-      { arabic_word: "جَلَسَ", turkish_meaning: "Oturdu", root_word: "jls" },
+      { arabic_word: "ذَهَبَ", turkish_meaning: "Gitti", root_word: "ذهب", example_sentence: "ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَةِ صَبَاحًا." },
+      { arabic_word: "كَتَبَ", turkish_meaning: "Yazdı", root_word: "كتب", example_sentence: "كَتَبَ الْوَلَدُ الرِّسَالَةَ بِالْقَلَمِ." },
+      { arabic_word: "قَرَأَ", turkish_meaning: "Okudu", root_word: "قرأ", example_sentence: "قَرَأَتْ أُمِّي كِتَابًا جَمِيلًا." },
+      { arabic_word: "شَرِبَ", turkish_meaning: "İçti", root_word: "شرب", example_sentence: "شَرِبَ الطِّفْلُ الْحَلِيبَ الدَّافِئَ." },
+      { arabic_word: "أَكَلَ", turkish_meaning: "Yedi", root_word: "أكل", example_sentence: "أَكَلَ الرَّجُلُ التُّفَّاحَةَ اللَّذِيذَةَ." },
+      { arabic_word: "جَلَسَ", turkish_meaning: "Oturdu", root_word: "جلس", example_sentence: "جَلَسَ الْمُعَلِّمُ عَلَى الْكُرْسِيِّ الْخَشَبِيِّ." },
     ],
   },
   {
@@ -63,12 +65,12 @@ const PREMADE_PACKS = [
     float_class: "float-fast",
     gradient_class: "from-teal-500/90 to-emerald-600/90 shadow-teal-500/20",
     words: [
-      { arabic_word: "مَرْحَبًا", turkish_meaning: "Merhaba", root_word: "rhb" },
-      { arabic_word: "شُكْرًا", turkish_meaning: "Teşekkürler", root_word: "shkr" },
-      { arabic_word: "مِنْ فَضْلِكَ", turkish_meaning: "Lütfen", root_word: "fdl" },
-      { arabic_word: "آسِف", turkish_meaning: "Üzgünüm / Özür dilerim", root_word: "asf" },
-      { arabic_word: "كَيْفَ حَالُكَ؟", turkish_meaning: "Nasılsın?", root_word: "hwl" },
-      { arabic_word: "بِخَيْر", turkish_meaning: "İyiyim", root_word: "xhr" },
+      { arabic_word: "مَرْحَبًا", turkish_meaning: "Merhaba", root_word: "رحيب", example_sentence: "مَرْحَبًا بِكَ يَا صَدِيقِي الْعَزِيزُ." },
+      { arabic_word: "شُكْرًا", turkish_meaning: "Teşekkürler", root_word: "شkr", example_sentence: "شُكْرًا جَزِيلًا عَلَى هَدِيَّتِكَ الرَّائِعَةِ." },
+      { arabic_word: "مِنْ فَضْلِكَ", turkish_meaning: "Lütfen", root_word: "فضل", example_sentence: "أَعْطِنِي الْقَلَمَ مِنْ فَضْلِكَ." },
+      { arabic_word: "آسِف", turkish_meaning: "Üzgünüm / Özür dilerim", root_word: "أسف", example_sentence: "أَنَا آسِفٌ لِأَنِّي تَأَخَّرْتُ عَنِ الدَّرْسِ." },
+      { arabic_word: "كَيْفَ حَالُكَ؟", turkish_meaning: "Nasılsın?", root_word: "حول", example_sentence: "كَيْفَ حَالُكَ يَا أَخِي الْغَالِي؟" },
+      { arabic_word: "بِخَيْر", turkish_meaning: "İyiyim", root_word: "خير", example_sentence: "أَنَا بِخَيْرٍ وَالْحَمْدُ للهِ كَثِيرًا." },
     ],
   },
   {
@@ -80,12 +82,12 @@ const PREMADE_PACKS = [
     float_class: "float-slow",
     gradient_class: "from-orange-500/90 to-pink-500/90 shadow-orange-500/20",
     words: [
-      { arabic_word: "بَيْت", turkish_meaning: "Ev", root_word: "byt" },
-      { arabic_word: "غُرْفَة", turkish_meaning: "Oda", root_word: "grf" },
-      { arabic_word: "بَاب", turkish_meaning: "Kapı", root_word: "bwb" },
-      { arabic_word: "نَافِذَة", turkish_meaning: "Pencere", root_word: "nfd" },
-      { arabic_word: "طَاوِلَة", turkish_meaning: "Masa", root_word: "twl" },
-      { arabic_word: "كُرْسِيّ", turkish_meaning: "Sandalye", root_word: "krs" },
+      { arabic_word: "بَيْت", turkish_meaning: "Ev", root_word: "بيت", example_sentence: "هَذَا بَيْتُنَا الْكَبِيرُ وَالْجَمِيلُ." },
+      { arabic_word: "غُرْفَة", turkish_meaning: "Oda", root_word: "غرف", example_sentence: "أَنَامُ فِي غُرْفَةِ النَّوْمِ الْهَادِئَةِ." },
+      { arabic_word: "بَاب", turkish_meaning: "Kapı", root_word: "بوب", example_sentence: "افْتَحِ الْبَابَ لِيَدْخُلَ الضَّيْفُ." },
+      { arabic_word: "نَافِذَة", turkish_meaning: "Pencere", root_word: "نفذ", example_sentence: "انْظُرْ مِنَ النَّافِذَةِ إِلَى الْحَدِيقَةِ." },
+      { arabic_word: "طَاوِلَة", turkish_meaning: "Masa", root_word: "طول", example_sentence: "الْكِتَابُ مَوْضُوعٌ عَلَى الطَّاوِلَةِ." },
+      { arabic_word: "كُرْسِيّ", turkish_meaning: "Sandalye", root_word: "كرس", example_sentence: "اجْلِسْ عَلَى الْكُرْسِيِّ الْمُرِيحِ." },
     ],
   },
 ];
@@ -98,12 +100,13 @@ export default function VocabCards() {
   const [isFlipped, setIsFlipped] = useState(false);
 
   // Tab State for Forms
-  const [activeFormTab, setActiveFormTab] = useState<"single" | "bulk" | "packs">("packs");
+  const [activeFormTab, setActiveFormTab] = useState<"packs" | "single" | "bulk">("packs");
 
   // Single Word Form State
   const [newArabic, setNewArabic] = useState("");
   const [newTurkish, setNewTurkish] = useState("");
   const [newRoot, setNewRoot] = useState("");
+  const [newExample, setNewExample] = useState("");
   const [savingWord, setSavingWord] = useState(false);
   const [translating, setTranslating] = useState(false);
 
@@ -196,6 +199,7 @@ export default function VocabCards() {
         arabic_word: newArabic.trim(),
         turkish_meaning: newTurkish.trim(),
         root_word: newRoot.trim() || null,
+        example_sentence: newExample.trim() || null,
         box_level: 1,
       });
 
@@ -204,6 +208,7 @@ export default function VocabCards() {
       setNewArabic("");
       setNewTurkish("");
       setNewRoot("");
+      setNewExample("");
       alert("Kelime dağarcığınıza eklendi!");
       await fetchVocab();
     } catch (err) {
@@ -227,9 +232,14 @@ export default function VocabCards() {
       for (const line of lines) {
         let ar = "";
         let tr = "";
+        let ex = "";
         const parts = line.split(/[;,-=]/);
 
-        if (parts.length >= 2) {
+        if (parts.length >= 3) {
+          ar = parts[0].trim();
+          tr = parts[1].trim();
+          ex = parts[2].trim();
+        } else if (parts.length === 2) {
           ar = parts[0].trim();
           tr = parts[1].trim();
         } else {
@@ -247,6 +257,7 @@ export default function VocabCards() {
           arabic_word: ar,
           turkish_meaning: tr,
           root_word: null,
+          example_sentence: ex || null,
         });
       }
 
@@ -272,6 +283,7 @@ export default function VocabCards() {
         arabic_word: item.arabic_word.trim(),
         turkish_meaning: item.turkish_meaning.trim(),
         root_word: item.root_word ? item.root_word.trim() : null,
+        example_sentence: item.example_sentence ? item.example_sentence.trim() : null,
         box_level: 1,
       }));
 
@@ -410,6 +422,7 @@ export default function VocabCards() {
         arabic_word: w.arabic_word,
         turkish_meaning: w.turkish_meaning,
         root_word: w.root_word,
+        example_sentence: w.example_sentence,
         box_level: 1,
       }));
 
@@ -482,8 +495,12 @@ export default function VocabCards() {
             <div className="space-y-6">
               {/* Flip Card Container */}
               <div
-                onClick={() => setIsFlipped(!isFlipped)}
-                className="perspective-1000 h-[280px] w-full cursor-pointer"
+                onClick={() => {
+                  setIsFlipped(!isFlipped);
+                  // Play pronunciation automatically when card is clicked/flipped!
+                  speakArabic(null, activeReviewWord?.arabic_word);
+                }}
+                className="perspective-1000 h-[340px] w-full cursor-pointer"
               >
                 <div
                   className={`relative w-full h-full duration-500 preserve-3d transition-transform ${
@@ -493,21 +510,26 @@ export default function VocabCards() {
                   {/* Front Side */}
                   <div className="absolute inset-0 bg-white border border-slate-100 rounded-3xl shadow-sm backface-hidden p-8 flex flex-col justify-between items-center text-center">
                     <div className="w-full flex justify-between items-center text-xs text-slate-400 font-bold uppercase tracking-wider">
-                      <span>Arapça Kelime</span>
+                      <span>Arapça Kelime (Ses için Dokun 🔊)</span>
                       <span>Kutu {activeReviewWord?.box_level}</span>
                     </div>
 
-                    <div className="space-y-4">
-                      <h2 dir="rtl" className="text-4xl sm:text-5xl font-bold text-slate-950 leading-normal font-sans">
+                    <div className="space-y-4 my-auto w-full flex flex-col items-center">
+                      <h2 dir="rtl" className="text-4xl sm:text-5xl font-black text-slate-950 leading-normal font-sans">
                         {activeReviewWord?.arabic_word}
                       </h2>
-                      <button
-                        onClick={(e) => speakArabic(e, activeReviewWord?.arabic_word)}
-                        className="h-9 w-9 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold flex items-center justify-center mx-auto transition-all cursor-pointer"
-                        title="Telaffuzu Dinle"
-                      >
-                        🔊
-                      </button>
+
+                      {/* Example sentence displayed underneath the word */}
+                      {activeReviewWord?.example_sentence && (
+                        <div className="mt-4 p-3 bg-slate-50 border border-slate-100 rounded-2xl w-full max-w-md">
+                          <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1 text-center">
+                            Örnek Cümle (Ön İzleme)
+                          </p>
+                          <p dir="rtl" className="text-sm font-semibold text-slate-700 font-sans tracking-wide text-center">
+                            {activeReviewWord.example_sentence}
+                          </p>
+                        </div>
+                      )}
                     </div>
 
                     <span className="text-xs text-slate-400 font-semibold">
@@ -521,14 +543,26 @@ export default function VocabCards() {
                       Türkçe Karşılığı
                     </span>
 
-                    <div className="space-y-3">
+                    <div className="space-y-4 my-auto w-full flex flex-col items-center">
                       <h2 className="text-2xl sm:text-3xl font-extrabold text-emerald-450 text-emerald-400">
                         {activeReviewWord?.turkish_meaning}
                       </h2>
                       {activeReviewWord?.root_word && (
-                        <p dir="rtl" className="text-sm text-slate-400 font-sans">
-                          Kök Kelime: {activeReviewWord.root_word}
-                        </p>
+                        <span className="text-[10px] bg-slate-800 px-2.5 py-0.5 rounded-lg text-slate-400 font-semibold uppercase font-mono">
+                          Kök: {activeReviewWord.root_word}
+                        </span>
+                      )}
+
+                      {/* Example sentence displayed under translation too */}
+                      {activeReviewWord?.example_sentence && (
+                        <div className="mt-4 p-3 bg-slate-800/60 border border-slate-700/50 rounded-2xl w-full max-w-md text-center">
+                          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1">
+                            Örnek Cümle
+                          </p>
+                          <p dir="rtl" className="text-sm font-semibold text-slate-355 text-slate-300 font-sans tracking-wide">
+                            {activeReviewWord.example_sentence}
+                          </p>
+                        </div>
                       )}
                     </div>
 
@@ -578,6 +612,11 @@ export default function VocabCards() {
                   <p className="text-sm font-semibold text-slate-500">
                     {word.turkish_meaning}
                   </p>
+                  {word.example_sentence && (
+                    <p dir="rtl" className="text-xs text-slate-400 font-sans mt-0.5">
+                      Cümle: {word.example_sentence}
+                    </p>
+                  )}
                   {word.root_word && (
                     <span className="text-[10px] bg-slate-50 px-2 py-0.5 rounded text-slate-400 font-semibold uppercase">
                       Kök: {word.root_word}
@@ -655,7 +694,6 @@ export default function VocabCards() {
 
                 return (
                   <div key={pack.id} className="relative z-10 flex flex-col items-center">
-                    {/* Winding staggered translation layout */}
                     <div
                       onClick={() => handleOpenPackInspector(pack)}
                       className={`w-36 h-36 rounded-full flex flex-col items-center justify-center text-center cursor-pointer transition-all hover:scale-105 shadow-xl relative border-4 border-white text-white ${
@@ -757,6 +795,20 @@ export default function VocabCards() {
               />
             </div>
 
+            <div>
+              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                Örnek Cümle (İsteğe bağlı)
+              </label>
+              <input
+                type="text"
+                value={newExample}
+                onChange={(e) => setNewExample(e.target.value)}
+                placeholder="Örn: كَتَبْتُ الرِّسَالَةَ."
+                dir="rtl"
+                className="block w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-right text-slate-950 font-sans focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 sm:text-sm transition-all"
+              />
+            </div>
+
             <button
               type="submit"
               disabled={savingWord || !newArabic.trim() || !newTurkish.trim()}
@@ -777,12 +829,12 @@ export default function VocabCards() {
               <textarea
                 value={bulkText}
                 onChange={(e) => setBulkText(e.target.value)}
-                placeholder="Örn:&#10;كِتَاب&#10;قَلَم, Kalem&#10;مَدْرَسَة = Okul"
+                placeholder="Örn:&#10;كِتَاب&#10;قَلَم, Kalem&#10;مَدْرَسَة = Okul = هَذِهِ مَدْرَسَةٌ."
                 rows={5}
                 className="block w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-slate-950 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 sm:text-sm transition-all font-mono leading-relaxed"
               ></textarea>
               <p className="text-[10px] text-slate-400 mt-1">
-                * Her satıra bir kelime yazın. Virgül (,), eşittir (=) veya tire (-) kullanarak karşılığını yazabilirsiniz. Anlamları boş bırakırsanız otomatik çevrilecektir.
+                * Her satıra bir kelime yazın. Eşittir (=) veya virgül (,) kullanarak `Arapça = Türkçe = Cümle` formatında yazabilirsiniz.
               </p>
             </div>
 
@@ -830,6 +882,18 @@ export default function VocabCards() {
                           className="w-1/2 rounded border border-slate-200 px-2 py-1 text-xs font-semibold"
                         />
                       </div>
+                      <input
+                        type="text"
+                        value={item.example_sentence || ""}
+                        dir="rtl"
+                        onChange={(e) => {
+                          const next = [...bulkPreview];
+                          next[idx].example_sentence = e.target.value || null;
+                          setBulkPreview(next);
+                        }}
+                        placeholder="Örnek Cümle (İsteğe bağlı)"
+                        className="w-full rounded border border-slate-200 px-2 py-1 text-[10px] text-right font-sans"
+                      />
                       <input
                         type="text"
                         value={item.root_word || ""}
@@ -909,56 +973,70 @@ export default function VocabCards() {
                   return (
                     <div
                       key={word.arabic_word}
-                      className="py-3.5 flex items-center justify-between hover:bg-slate-50/20 px-2 rounded-xl transition-all"
+                      className="py-3.5 flex flex-col hover:bg-slate-50/20 px-2 rounded-xl transition-all"
                     >
-                      <div className="flex items-center gap-3">
-                        <input
-                          type="checkbox"
-                          disabled={isAlreadyImported}
-                          checked={!!selectedWordsToImport[word.arabic_word]}
-                          onChange={(e) => {
-                            setSelectedWordsToImport((prev) => ({
-                              ...prev,
-                              [word.arabic_word]: e.target.checked,
-                            }));
-                          }}
-                          className="h-4 w-4 rounded text-emerald-600 border-slate-300 focus:ring-emerald-500 disabled:opacity-30"
-                        />
-                        <div className="text-left">
-                          <span className="font-bold text-sm text-slate-800">
-                            {word.turkish_meaning}
+                      <div className="flex items-center justify-between w-full">
+                        <div className="flex items-center gap-3">
+                          <input
+                            type="checkbox"
+                            disabled={isAlreadyImported}
+                            checked={!!selectedWordsToImport[word.arabic_word]}
+                            onChange={(e) => {
+                              setSelectedWordsToImport((prev) => ({
+                                ...prev,
+                                [word.arabic_word]: e.target.checked,
+                              }));
+                            }}
+                            className="h-4 w-4 rounded text-emerald-600 border-slate-300 focus:ring-emerald-500 disabled:opacity-30"
+                          />
+                          <div className="text-left">
+                            <span className="font-bold text-sm text-slate-800">
+                              {word.turkish_meaning}
+                            </span>
+                            <p className="text-[10px] text-slate-400 font-mono mt-0.5">
+                              Kök: {word.root_word}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <span
+                            dir="rtl"
+                            className="text-lg font-black text-slate-900 font-sans"
+                          >
+                            {word.arabic_word}
                           </span>
-                          <p className="text-[10px] text-slate-400 font-mono mt-0.5">
-                            Kök: {word.root_word}
-                          </p>
+                          <button
+                            type="button"
+                            onClick={() => speakArabic(null, word.arabic_word)}
+                            className="h-7 w-7 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-emerald-700 text-xs cursor-pointer border border-slate-100 bg-white"
+                            title="Dinle"
+                          >
+                            🔊
+                          </button>
+                          {isAlreadyImported ? (
+                            <span className="text-[9px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded border border-emerald-100">
+                              Yüklendi ✓
+                            </span>
+                          ) : (
+                            <span className="text-[9px] bg-slate-100 text-slate-500 font-semibold px-2 py-0.5 rounded">
+                              Hazır
+                            </span>
+                          )}
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-3">
-                        <span
-                          dir="rtl"
-                          className="text-lg font-black text-slate-900 font-sans"
-                        >
-                          {word.arabic_word}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => speakArabic(null, word.arabic_word)}
-                          className="h-7 w-7 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-emerald-700 text-xs cursor-pointer border border-slate-100 bg-white"
-                          title="Dinle"
-                        >
-                          🔊
-                        </button>
-                        {isAlreadyImported ? (
-                          <span className="text-[9px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded border border-emerald-100">
-                            Yüklendi ✓
-                          </span>
-                        ) : (
-                          <span className="text-[9px] bg-slate-100 text-slate-500 font-semibold px-2 py-0.5 rounded">
-                            Hazır
-                          </span>
-                        )}
-                      </div>
+                      {/* Display Example Sentence inside the Theme Modal */}
+                      {word.example_sentence && (
+                        <div className="mt-2 ml-7 p-2 bg-slate-50 border border-slate-100 rounded-xl text-left">
+                          <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">
+                            Örnek Cümle
+                          </p>
+                          <p dir="rtl" className="text-xs font-semibold text-slate-600 font-sans text-right">
+                            {word.example_sentence}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   );
                 })}

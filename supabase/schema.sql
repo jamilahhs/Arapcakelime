@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS public.vocabulary (
     arabic_word TEXT NOT NULL,
     turkish_meaning TEXT NOT NULL,
     root_word TEXT,
+    example_sentence TEXT,
     box_level INTEGER DEFAULT 1 CHECK (box_level BETWEEN 1 AND 5),
     next_review_date DATE DEFAULT CURRENT_DATE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()

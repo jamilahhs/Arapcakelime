@@ -150,22 +150,26 @@ const mockSupabase = {
           localStorage.setItem("mock_db_assignments", JSON.stringify(list));
         }
         if (table === "vocabulary") {
+          const session = typeof window !== "undefined" ? localStorage.getItem("mock_session") : null;
+          const uId = session ? JSON.parse(session).id : "mock-student";
           list = [
             {
               id: "v1",
-              user_id: "mock-student",
+              user_id: uId,
               arabic_word: "كِتَاب",
               turkish_meaning: "Kitap",
               root_word: "كتب",
+              example_sentence: "هَذَا كِتَابٌ مُفِيدٌ",
               box_level: 1,
               next_review_date: new Date().toISOString().split("T")[0],
             },
             {
               id: "v2",
-              user_id: "mock-student",
+              user_id: uId,
               arabic_word: "قَلَم",
               turkish_meaning: "Kalem",
               root_word: "قلم",
+              example_sentence: "كَتَبْتُ الرِّسَالَةَ بِالْقَلَمِ",
               box_level: 2,
               next_review_date: new Date().toISOString().split("T")[0],
             },
