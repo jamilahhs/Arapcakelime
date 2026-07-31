@@ -149,3 +149,27 @@ body {
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+
+/* Animated Floating Theme Bubbles & Glows */
+@keyframes floatBubble {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.15); }
+  50% { box-shadow: 0 0 25px rgba(16, 185, 129, 0.35); }
+}
+
+.float-slow {
+  animation: floatBubble 6s ease-in-out infinite;
+}
+
+.float-medium {
+  animation: floatBubble 4.8s ease-in-out infinite;
+}
+
+.float-fast {
+  animation: floatBubble 3.8s ease-in-out infinite;
+}

@@ -22,41 +22,70 @@ interface BulkItem {
 const PREMADE_PACKS = [
   {
     id: "pack_colors",
-    name: "Renkler (الألوان)",
+    name: "Renkler",
+    arabic_name: "الألوان",
     desc: "Arapça temel renk isimleri ve telaffuzları.",
+    icon: "🎨",
+    float_class: "float-slow",
+    gradient_class: "from-rose-500/90 to-amber-500/90 shadow-rose-500/20",
     words: [
-      { arabic_word: "أَحْمَر", turkish_meaning: "Kırmızı", root_word: "حمر" },
-      { arabic_word: "أَزْرَق", turkish_meaning: "Mavi", root_word: "زرق" },
-      { arabic_word: "أَخْضَر", turkish_meaning: "Yeşil", root_word: "خضر" },
-      { arabic_word: "أَصْفَر", turkish_meaning: "Sarı", root_word: "صفر" },
-      { arabic_word: "أَبْيَض", turkish_meaning: "Beyaz", root_word: "بيض" },
-      { arabic_word: "أَسْوَد", turkish_meaning: "Siyah", root_word: "سود" },
+      { arabic_word: "أَحْمَر", turkish_meaning: "Kırmızı", root_word: "حmer" },
+      { arabic_word: "أَزْرَق", turkish_meaning: "Mavi", root_word: "zrq" },
+      { arabic_word: "أَخْضَر", turkish_meaning: "Yeşil", root_word: "xdr" },
+      { arabic_word: "أَصْفَر", turkish_meaning: "Sarı", root_word: "sfr" },
+      { arabic_word: "أَبْيَض", turkish_meaning: "Beyaz", root_word: "byd" },
+      { arabic_word: "أَسْوَد", turkish_meaning: "Siyah", root_word: "swd" },
     ],
   },
   {
     id: "pack_verbs",
-    name: "Temel Fiiller (الأفعال)",
-    desc: "Günlük hayatta en sık kullanılan 6 Arapça mazi fiili.",
+    name: "Temel Fiiller",
+    arabic_name: "الأفعال",
+    desc: "En sık kullanılan 6 Arapça mazi eylem fiili.",
+    icon: "🎬",
+    float_class: "float-medium",
+    gradient_class: "from-purple-600/90 to-indigo-600/90 shadow-purple-600/20",
     words: [
-      { arabic_word: "ذَهَبَ", turkish_meaning: "Gitti", root_word: "ذهب" },
-      { arabic_word: "كَتَبَ", turkish_meaning: "Yazdı", root_word: "كتب" },
-      { arabic_word: "قَرَأَ", turkish_meaning: "Okudu", root_word: "قرأ" },
-      { arabic_word: "شَرِبَ", turkish_meaning: "İçti", root_word: "şrb" },
-      { arabic_word: "أَكَلَ", turkish_meaning: "Yedi", root_word: "أكل" },
-      { arabic_word: "جَلَسَ", turkish_meaning: "Oturdu", root_word: "جلس" },
+      { arabic_word: "ذَهَبَ", turkish_meaning: "Gitti", root_word: "zhb" },
+      { arabic_word: "كَتَبَ", turkish_meaning: "Yazdı", root_word: "ktb" },
+      { arabic_word: "قَرَأَ", turkish_meaning: "Okudu", root_word: "qr'" },
+      { arabic_word: "شَرِبَ", turkish_meaning: "İçti", root_word: "shrb" },
+      { arabic_word: "أَكَلَ", turkish_meaning: "Yedi", root_word: "akl" },
+      { arabic_word: "جَلَسَ", turkish_meaning: "Oturdu", root_word: "jls" },
     ],
   },
   {
     id: "pack_daily",
-    name: "Günlük İletişim (الحوار)",
+    name: "Günlük İletişim",
+    arabic_name: "الحوار",
     desc: "Selamlaşma ve temel nezaket ifadeleri.",
+    icon: "💬",
+    float_class: "float-fast",
+    gradient_class: "from-teal-500/90 to-emerald-600/90 shadow-teal-500/20",
     words: [
-      { arabic_word: "مَرْحَبًا", turkish_meaning: "Merhaba", root_word: "رحيب" },
-      { arabic_word: "شُكْرًا", turkish_meaning: "Teşekkürler", root_word: "شكر" },
-      { arabic_word: "مِنْ فَضْلِكَ", turkish_meaning: "Lütfen", root_word: "فضل" },
-      { arabic_word: "آسِف", turkish_meaning: "Üzgünüm / Özür dilerim", root_word: "أسف" },
-      { arabic_word: "كَيْفَ حَالُكَ؟", turkish_meaning: "Nasılsın?", root_word: "حول" },
-      { arabic_word: "بِخَيْر", turkish_meaning: "İyiyim", root_word: "خير" },
+      { arabic_word: "مَرْحَبًا", turkish_meaning: "Merhaba", root_word: "rhb" },
+      { arabic_word: "شُكْرًا", turkish_meaning: "Teşekkürler", root_word: "shkr" },
+      { arabic_word: "مِنْ فَضْلِكَ", turkish_meaning: "Lütfen", root_word: "fdl" },
+      { arabic_word: "آسِف", turkish_meaning: "Üzgünüm / Özür dilerim", root_word: "asf" },
+      { arabic_word: "كَيْفَ حَالُكَ؟", turkish_meaning: "Nasılsın?", root_word: "hwl" },
+      { arabic_word: "بِخَيْر", turkish_meaning: "İyiyim", root_word: "xhr" },
+    ],
+  },
+  {
+    id: "pack_house",
+    name: "Ev Eşyaları",
+    arabic_name: "البيت",
+    desc: "Ev ortamında kullanılan temel isimler.",
+    icon: "🏠",
+    float_class: "float-slow",
+    gradient_class: "from-orange-500/90 to-pink-500/90 shadow-orange-500/20",
+    words: [
+      { arabic_word: "بَيْت", turkish_meaning: "Ev", root_word: "byt" },
+      { arabic_word: "غُرْفَة", turkish_meaning: "Oda", root_word: "grf" },
+      { arabic_word: "بَاب", turkish_meaning: "Kapı", root_word: "bwb" },
+      { arabic_word: "نَافِذَة", turkish_meaning: "Pencere", root_word: "nfd" },
+      { arabic_word: "طَاوِلَة", turkish_meaning: "Masa", root_word: "twl" },
+      { arabic_word: "كُرْسِيّ", turkish_meaning: "Sandalye", root_word: "krs" },
     ],
   },
 ];
@@ -69,7 +98,7 @@ export default function VocabCards() {
   const [isFlipped, setIsFlipped] = useState(false);
 
   // Tab State for Forms
-  const [activeFormTab, setActiveFormTab] = useState<"single" | "bulk" | "packs">("single");
+  const [activeFormTab, setActiveFormTab] = useState<"single" | "bulk" | "packs">("packs");
 
   // Single Word Form State
   const [newArabic, setNewArabic] = useState("");
@@ -83,8 +112,10 @@ export default function VocabCards() {
   const [bulkLoading, setBulkLoading] = useState(false);
   const [bulkPreview, setBulkPreview] = useState<BulkItem[]>([]);
 
-  // Packs State
-  const [importingPackId, setImportingPackId] = useState<string | null>(null);
+  // Packs Detail Modal State
+  const [selectedPack, setSelectedPack] = useState<typeof PREMADE_PACKS[0] | null>(null);
+  const [selectedWordsToImport, setSelectedWordsToImport] = useState<Record<string, boolean>>({});
+  const [playingAll, setPlayingAll] = useState(false);
 
   const fetchVocab = async () => {
     try {
@@ -259,34 +290,6 @@ export default function VocabCards() {
     }
   };
 
-  const handleImportPack = async (pack: typeof PREMADE_PACKS[0]) => {
-    try {
-      setImportingPackId(pack.id);
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) return;
-
-      const insertRows = pack.words.map((w) => ({
-        user_id: user.id,
-        arabic_word: w.arabic_word,
-        turkish_meaning: w.turkish_meaning,
-        root_word: w.root_word,
-        box_level: 1,
-      }));
-
-      const { error } = await supabase.from("vocabulary").insert(insertRows);
-      if (error) throw error;
-
-      alert(`"${pack.name}" paketindeki ${pack.words.length} kelime dağarcığınıza eklendi!`);
-      await fetchVocab();
-    } catch (err) {
-      console.error("Paket eklenirken hata:", err);
-    } finally {
-      setImportingPackId(null);
-    }
-  };
-
   const handleLeitner = async (correct: boolean) => {
     const currentWord = reviewList[currentIdx];
     if (!currentWord) return;
@@ -295,7 +298,6 @@ export default function VocabCards() {
     let daysToAdd = 1;
 
     if (correct) {
-      // Correct reviews shift boxes up
       nextBox = Math.min(nextBox + 1, 5);
       if (nextBox === 1) daysToAdd = 1;
       else if (nextBox === 2) daysToAdd = 3;
@@ -303,7 +305,6 @@ export default function VocabCards() {
       else if (nextBox === 4) daysToAdd = 14;
       else if (nextBox === 5) daysToAdd = 30;
     } else {
-      // Incorrect reviews reset back to Box 1
       nextBox = 1;
       daysToAdd = 1;
     }
@@ -323,7 +324,6 @@ export default function VocabCards() {
 
       if (error) throw error;
 
-      // Update local states
       setVocabList((prev) =>
         prev.map((w) =>
           w.id === currentWord.id
@@ -336,7 +336,6 @@ export default function VocabCards() {
         setCurrentIdx(currentIdx + 1);
         setIsFlipped(false);
       } else {
-        // Completed all reviews
         alert("Harika! Bugünkü tüm kelime kartlarını tamamladınız!");
         await fetchVocab();
       }
@@ -345,8 +344,8 @@ export default function VocabCards() {
     }
   };
 
-  const speakArabic = (e: React.MouseEvent, text: string) => {
-    e.stopPropagation();
+  const speakArabic = (e: React.MouseEvent | null, text: string) => {
+    if (e) e.stopPropagation();
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
@@ -355,11 +354,94 @@ export default function VocabCards() {
     }
   };
 
+  const handleOpenPackInspector = (pack: typeof PREMADE_PACKS[0]) => {
+    setSelectedPack(pack);
+    const initialSelects: Record<string, boolean> = {};
+    pack.words.forEach((w) => {
+      const isAlreadyImported = vocabList.some((vw) => vw.arabic_word === w.arabic_word);
+      initialSelects[w.arabic_word] = !isAlreadyImported;
+    });
+    setSelectedWordsToImport(initialSelects);
+  };
+
+  const playPackAudioSequence = () => {
+    if (!selectedPack || typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    setPlayingAll(true);
+    let idx = 0;
+
+    const playNext = () => {
+      if (idx >= selectedPack.words.length) {
+        setPlayingAll(false);
+        return;
+      }
+      const wordText = selectedPack.words[idx].arabic_word;
+      const utterance = new SpeechSynthesisUtterance(wordText);
+      utterance.lang = "ar-SA";
+      utterance.onend = () => {
+        setTimeout(() => {
+          idx++;
+          playNext();
+        }, 300);
+      };
+      utterance.onerror = () => {
+        setPlayingAll(false);
+      };
+      window.speechSynthesis.speak(utterance);
+    };
+
+    window.speechSynthesis.cancel();
+    playNext();
+  };
+
+  const handleImportSelectedWords = async () => {
+    if (!selectedPack) return;
+    const wordsToInsert = selectedPack.words.filter((w) => selectedWordsToImport[w.arabic_word]);
+    if (wordsToInsert.length === 0) return;
+
+    try {
+      setSavingWord(true);
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const insertRows = wordsToInsert.map((w) => ({
+        user_id: user.id,
+        arabic_word: w.arabic_word,
+        turkish_meaning: w.turkish_meaning,
+        root_word: w.root_word,
+        box_level: 1,
+      }));
+
+      const { error } = await supabase.from("vocabulary").insert(insertRows);
+      if (error) throw error;
+
+      alert(`${wordsToInsert.length} yeni kelime dağarcığınıza eklendi!`);
+      setSelectedPack(null);
+      await fetchVocab();
+    } catch (err) {
+      console.error("Kelime import hatası:", err);
+    } finally {
+      setSavingWord(false);
+    }
+  };
+
+  const getPackProgress = (packWords: { arabic_word: string }[]) => {
+    const loadedCount = packWords.filter((pw) =>
+      vocabList.some((vw) => vw.arabic_word === pw.arabic_word)
+    ).length;
+    return {
+      loaded: loadedCount,
+      total: packWords.length,
+      percentage: Math.round((loadedCount / packWords.length) * 100),
+    };
+  };
+
   const activeReviewWord = reviewList[currentIdx];
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      {/* Leitner Box and Flip Card Left Column */}
+      {/* Left Column: Learning Map OR Flashcard Review */}
       <div className="lg:col-span-2 space-y-6">
         {/* Toggle Filters */}
         <div className="flex items-center justify-between border-b border-slate-100 pb-4">
@@ -511,10 +593,21 @@ export default function VocabCards() {
         )}
       </div>
 
-      {/* Right Column: Multi-tab word adding interface */}
+      {/* Right Column: Multi-tab word adding and Learning Map interface */}
       <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-6 h-fit">
         {/* Tab Picker */}
         <div className="flex border-b border-slate-150 bg-slate-50 p-1 rounded-xl">
+          <button
+            type="button"
+            onClick={() => setActiveFormTab("packs")}
+            className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+              activeFormTab === "packs"
+                ? "bg-white text-slate-950 shadow-sm"
+                : "text-slate-500 hover:text-slate-700"
+            }`}
+          >
+            Tema Haritası 🎁
+          </button>
           <button
             type="button"
             onClick={() => setActiveFormTab("single")}
@@ -537,20 +630,78 @@ export default function VocabCards() {
           >
             Toplu Yükleme ⚡
           </button>
-          <button
-            type="button"
-            onClick={() => setActiveFormTab("packs")}
-            className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-              activeFormTab === "packs"
-                ? "bg-white text-slate-950 shadow-sm"
-                : "text-slate-500 hover:text-slate-700"
-            }`}
-          >
-            Hazır Paketler 🎁
-          </button>
         </div>
 
-        {/* 1. SINGLE WORD ADD FORM */}
+        {/* 1. PRE-MADE THEMATIC PATHMAP */}
+        {activeFormTab === "packs" && (
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-sm font-bold text-slate-950 uppercase tracking-wider">
+                Arapça Öğrenim Yolculuğu
+              </h3>
+              <p className="text-[11px] text-slate-400 mt-1">
+                Kürelerin üzerine tıklayarak temalardaki kelimeleri dinleyin, seçin ve dağarcığınıza yükleyin!
+              </p>
+            </div>
+
+            {/* Dotted Connections Paths Map */}
+            <div className="relative flex flex-col items-center gap-6 py-4">
+              {/* Vertical connector line */}
+              <div className="absolute top-8 bottom-8 left-1/2 w-0.5 border-l-2 border-dashed border-emerald-100 -translate-x-1/2 z-0"></div>
+
+              {PREMADE_PACKS.map((pack, idx) => {
+                const prog = getPackProgress(pack.words);
+                const isCompleted = prog.loaded === prog.total;
+
+                return (
+                  <div key={pack.id} className="relative z-10 flex flex-col items-center">
+                    {/* Winding staggered translation layout */}
+                    <div
+                      onClick={() => handleOpenPackInspector(pack)}
+                      className={`w-36 h-36 rounded-full flex flex-col items-center justify-center text-center cursor-pointer transition-all hover:scale-105 shadow-xl relative border-4 border-white text-white ${
+                        pack.float_class
+                      } bg-gradient-to-br ${pack.gradient_class}`}
+                    >
+                      {/* Circular Progress Overlay */}
+                      <div className="absolute inset-0 rounded-full border-4 border-white/20"></div>
+                      <div
+                        className={`absolute inset-0 rounded-full border-4 border-t-emerald-400 border-r-emerald-400/80 transition-all ${
+                          isCompleted ? "border-emerald-400" : "border-transparent"
+                        }`}
+                        style={{
+                          transform: `rotate(${prog.percentage * 3.6}deg)`,
+                        }}
+                      ></div>
+
+                      <span className="text-3xl mb-1">{pack.icon}</span>
+                      <h4 className="font-black text-xs tracking-wide">{pack.name}</h4>
+                      <span dir="rtl" className="text-[10px] font-sans opacity-80 mt-0.5">
+                        {pack.arabic_name}
+                      </span>
+
+                      {/* Progress text */}
+                      <span className="text-[9px] bg-slate-900/40 px-2 py-0.5 rounded-full font-bold mt-2">
+                        {prog.loaded} / {prog.total} Kelime
+                      </span>
+
+                      {isCompleted && (
+                        <span className="absolute -top-1 -right-1 bg-emerald-500 border-2 border-white rounded-full text-[9px] font-black h-5 w-5 flex items-center justify-center shadow">
+                          ✓
+                        </span>
+                      )}
+                    </div>
+
+                    <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider mt-2">
+                      {idx + 1}. Aşama
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* 2. SINGLE WORD ADD FORM */}
         {activeFormTab === "single" && (
           <form onSubmit={handleAddWord} className="space-y-4">
             <div>
@@ -616,7 +767,7 @@ export default function VocabCards() {
           </form>
         )}
 
-        {/* 2. BULK IMPORT FORM */}
+        {/* 3. BULK IMPORT FORM */}
         {activeFormTab === "bulk" && (
           <div className="space-y-4">
             <div>
@@ -706,47 +857,140 @@ export default function VocabCards() {
             )}
           </div>
         )}
+      </div>
 
-        {/* 3. PRE-MADE THEMATIC PACKS */}
-        {activeFormTab === "packs" && (
-          <div className="space-y-4">
-            {PREMADE_PACKS.map((pack) => (
-              <div
-                key={pack.id}
-                className="p-4 border border-slate-100 rounded-2xl bg-slate-50/50 hover:bg-slate-50 transition-all flex flex-col justify-between gap-3"
-              >
+      {/* Thematic Pack Inspector Overlay Modal */}
+      {selectedPack && (
+        <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl border border-slate-100 shadow-2xl w-full max-w-xl overflow-hidden max-h-[85vh] flex flex-col">
+            {/* Header */}
+            <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+              <div className="flex items-center gap-3">
+                <span className="text-3xl">{selectedPack.icon}</span>
                 <div>
-                  <h4 className="font-bold text-sm text-slate-900">{pack.name}</h4>
-                  <p className="text-xs text-slate-400 mt-1">{pack.desc}</p>
-                  <div className="flex flex-wrap gap-1.5 mt-2">
-                    {pack.words.slice(0, 4).map((w, idx) => (
-                      <span
-                        key={idx}
-                        className="text-[10px] bg-white border border-slate-100 px-2 py-0.5 rounded text-slate-600 font-mono"
-                      >
-                        {w.arabic_word}
-                      </span>
-                    ))}
-                    {pack.words.length > 4 && (
-                      <span className="text-[10px] text-slate-400 font-bold px-1.5">
-                        +{pack.words.length - 4} daha
-                      </span>
-                    )}
-                  </div>
+                  <h3 className="text-lg font-bold text-slate-900">
+                    {selectedPack.name} ({selectedPack.arabic_name})
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-1">
+                    {selectedPack.desc}
+                  </p>
                 </div>
+              </div>
+              <button
+                onClick={() => setSelectedPack(null)}
+                className="h-8 w-8 rounded-full hover:bg-slate-200 flex items-center justify-center font-bold text-slate-500 cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Content list */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+              <div className="flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <span className="text-xs font-bold text-slate-700">
+                  Telaffuz Rehberi
+                </span>
                 <button
                   type="button"
-                  disabled={importingPackId === pack.id}
-                  onClick={() => handleImportPack(pack)}
-                  className="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-xs transition-all cursor-pointer shadow-sm"
+                  disabled={playingAll}
+                  onClick={playPackAudioSequence}
+                  className="px-3 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-[10px] font-black rounded-lg border border-emerald-100 disabled:opacity-50 transition-all cursor-pointer"
                 >
-                  {importingPackId === pack.id ? "Ekleniyor..." : "Bu Paketi Ekle 📥"}
+                  {playingAll ? "Seslendiriliyor..." : "Tüm Kelimeleri Seslendir 🔊"}
                 </button>
               </div>
-            ))}
+
+              <div className="divide-y divide-slate-100">
+                {selectedPack.words.map((word) => {
+                  const isAlreadyImported = vocabList.some(
+                    (vw) => vw.arabic_word === word.arabic_word
+                  );
+
+                  return (
+                    <div
+                      key={word.arabic_word}
+                      className="py-3.5 flex items-center justify-between hover:bg-slate-50/20 px-2 rounded-xl transition-all"
+                    >
+                      <div className="flex items-center gap-3">
+                        <input
+                          type="checkbox"
+                          disabled={isAlreadyImported}
+                          checked={!!selectedWordsToImport[word.arabic_word]}
+                          onChange={(e) => {
+                            setSelectedWordsToImport((prev) => ({
+                              ...prev,
+                              [word.arabic_word]: e.target.checked,
+                            }));
+                          }}
+                          className="h-4 w-4 rounded text-emerald-600 border-slate-300 focus:ring-emerald-500 disabled:opacity-30"
+                        />
+                        <div className="text-left">
+                          <span className="font-bold text-sm text-slate-800">
+                            {word.turkish_meaning}
+                          </span>
+                          <p className="text-[10px] text-slate-400 font-mono mt-0.5">
+                            Kök: {word.root_word}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <span
+                          dir="rtl"
+                          className="text-lg font-black text-slate-900 font-sans"
+                        >
+                          {word.arabic_word}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => speakArabic(null, word.arabic_word)}
+                          className="h-7 w-7 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-emerald-700 text-xs cursor-pointer border border-slate-100 bg-white"
+                          title="Dinle"
+                        >
+                          🔊
+                        </button>
+                        {isAlreadyImported ? (
+                          <span className="text-[9px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded border border-emerald-100">
+                            Yüklendi ✓
+                          </span>
+                        ) : (
+                          <span className="text-[9px] bg-slate-100 text-slate-500 font-semibold px-2 py-0.5 rounded">
+                            Hazır
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="p-4 border-t border-slate-100 flex justify-between bg-slate-50/20">
+              <button
+                onClick={() => setSelectedPack(null)}
+                className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold text-xs cursor-pointer"
+              >
+                Vazgeç
+              </button>
+              <button
+                onClick={handleImportSelectedWords}
+                disabled={
+                  savingWord ||
+                  Object.values(selectedWordsToImport).filter(Boolean).length === 0
+                }
+                className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-xs cursor-pointer shadow-lg shadow-emerald-950/10"
+              >
+                {savingWord
+                  ? "Ekleniyor..."
+                  : `Seçilenleri Dağarcığa Ekle (${
+                      Object.values(selectedWordsToImport).filter(Boolean).length
+                    }) 📥`}
+              </button>
+            </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
