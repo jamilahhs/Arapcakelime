@@ -39,6 +39,7 @@ const mockSupabase = {
       const profiles = JSON.parse(localStorage.getItem("mock_db_profiles") || "[]");
       const newProfile = {
         id,
+        email,
         full_name: fullName,
         role,
         streak_count: 3,
@@ -56,15 +57,30 @@ const mockSupabase = {
     signInWithPassword: async ({ email, password }: any) => {
       if (typeof window === "undefined") return { data: { user: null }, error: null };
 
+      if (email === "teacher@test.com" || email === "student@test.com") {
+        localStorage.removeItem("mock_db_profiles");
+        localStorage.removeItem("mock_db_classes");
+        localStorage.removeItem("mock_db_class_members");
+        localStorage.removeItem("mock_db_vocabulary");
+        localStorage.removeItem("mock_db_quizzes");
+        localStorage.removeItem("mock_db_assignments");
+        localStorage.removeItem("mock_db_quiz_results");
+        localStorage.removeItem("mock_db_assignment_submissions");
+      }
+
       const profiles = JSON.parse(localStorage.getItem("mock_db_profiles") || "[]");
-      let p = profiles.find((x: any) => x.full_name.toLowerCase().includes(email.split("@")[0].toLowerCase()));
+      let p = profiles.find((x: any) => x.email === email);
 
       if (!p) {
-        // Create auto profile for demo convenience
+        // Assign deterministic IDs for standard test accounts
+        let id = "mock-user-" + Math.random().toString(36).substr(2, 9);
+        if (email === "teacher@test.com") id = "mock-teacher";
+        else if (email === "student@test.com") id = "mock-student";
+
         const role = email.includes("teacher") ? "teacher" : "student";
-        const id = "mock-user-" + Math.random().toString(36).substr(2, 9);
         p = {
           id,
+          email,
           full_name: email.split("@")[0].toUpperCase(),
           role,
           streak_count: 5,
@@ -74,7 +90,7 @@ const mockSupabase = {
         localStorage.setItem("mock_db_profiles", JSON.stringify(profiles));
       }
 
-      const user = { id: p.id, email, full_name: p.full_name, role: p.role };
+      const user = { id: p.id, email: p.email, full_name: p.full_name, role: p.role };
       localStorage.setItem("mock_session", JSON.stringify(user));
 
       document.cookie = `mock_role=${p.role}; path=/`;
@@ -101,14 +117,15 @@ const mockSupabase = {
       if (list.length === 0) {
         if (table === "profiles") {
           list = [
-            { id: "mock-student-id", full_name: "Yusuf Demir", role: "student", streak_count: 5, last_active_date: new Date().toISOString().split("T")[0] }
+            { id: "mock-student", email: "student@test.com", full_name: "Yusuf Demir", role: "student", streak_count: 5, last_active_date: new Date().toISOString().split("T")[0] },
+            { id: "mock-teacher", email: "teacher@test.com", full_name: "Fatma Öğretmen", role: "teacher", streak_count: 0, last_active_date: new Date().toISOString().split("T")[0] }
           ];
           localStorage.setItem("mock_db_profiles", JSON.stringify(list));
         }
         if (table === "class_members") {
           list = [
-            { id: "cm1", class_id: "c1", student_id: "mock-student-id" },
-            { id: "cm2", class_id: "c2", student_id: "mock-student-id" }
+            { id: "cm1", class_id: "c1", student_id: "mock-student" },
+            { id: "cm2", class_id: "c2", student_id: "mock-student" }
           ];
           localStorage.setItem("mock_db_class_members", JSON.stringify(list));
         }
